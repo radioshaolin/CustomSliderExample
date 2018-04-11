@@ -20,5 +20,11 @@ class SliderTrackLayer: CALayer {
         ctx.setFillColor(slider.trackTintColor.cgColor)
         ctx.addPath(path.cgPath)
         (ctx).fillPath()
+        
+        ctx.setFillColor(slider.trackHighlightTintColor.cgColor)
+        let lowerValuePosition = CGFloat(slider.positionForValue(slider.minimumValue))
+        let upperValuePosition = CGFloat(slider.positionForValue(slider.currentValue))
+        let rect = CGRect(x: lowerValuePosition - slider.thumbWidth / 2, y: 0.0, width: upperValuePosition - lowerValuePosition, height: bounds.height)
+        ctx.fill(rect)
     }
 }

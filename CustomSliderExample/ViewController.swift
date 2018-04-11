@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.addSubview(slider)
         slider.addTarget(self, action: #selector(ViewController.sliderXValueChanged), for: .valueChanged)
         slider.addTarget(self, action: #selector(ViewController.sliderYValueChanged), for: .touchDragExit)
@@ -23,8 +23,7 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         let margin: CGFloat = 20.0
         let width = view.bounds.width - margin * 2
-        slider.frame = CGRect(x: margin, y: UIApplication.shared.statusBarFrame.height + margin, width: width, height: 15)
-        
+        slider.frame = CGRect(x: margin, y: UIApplication.shared.statusBarFrame.height + CGFloat(100.0), width: width, height: 16)
     }
 
     @objc func sliderXValueChanged() {

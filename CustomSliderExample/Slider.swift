@@ -11,32 +11,34 @@ import QuartzCore
 
 class Slider: UIControl {
 
-    var minimumValue: Double = 0.0
-    var maximumValue: Double = 1.0
-    var currentValue: Double = 0.4
-    
-    var trackTintColor = UIColor(white: 1, alpha: 0.6)
-    var trackHighlightTintColor = UIColor(red: 0.13, green: 0.76, blue: 0.69, alpha: 1.0)
-    var thumbTintColor = UIColor.white
-    
-    var curvaceousness : CGFloat = 1
-    
-    var previousLocation = CGPoint()
-    var locationY: CGFloat = 0.0
-    
     let trackLayer = SliderTrackLayer()
     let thumbLayer = SliderThumbLayer()
     
-    override var frame: CGRect {
+    var minimumValue: Double = 0.0
+    var maximumValue: Double = 1.0
+    var currentValue: Double = 0.4 {
         didSet { updateLayerFrames() }
     }
-    
+    var previousLocation = CGPoint()
+    var locationY: CGFloat = 0.0
+    var trackTintColor = UIColor(white: 1, alpha: 0.6) {
+        didSet { trackLayer.setNeedsDisplay() }
+    }
+    var trackHighlightTintColor = UIColor(red: 0.13, green: 0.76, blue: 0.69, alpha: 1.0) {
+        didSet { trackLayer.setNeedsDisplay() }
+    }
+    var thumbTintColor = UIColor(red: 0.13, green: 0.76, blue: 0.69, alpha: 1.0) {
+        didSet { thumbLayer.setNeedsDisplay() }
+    }
     var thumbWidth: CGFloat {
         return CGFloat(bounds.height)
     }
-    
+    var curvaceousness : CGFloat = 1
 
-    
+    override var frame: CGRect {
+        didSet { updateLayerFrames() }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -74,10 +76,6 @@ class Slider: UIControl {
                                       lowerValue: minimumValue,
                                       upperValue: maximumValue)
         }
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        updateLayerFrames()
-        CATransaction.commit()
         sendActions(for: .valueChanged)
         sendActions(for: .touchDragExit)
         return true
@@ -88,6 +86,8 @@ class Slider: UIControl {
     }
     
     func updateLayerFrames() {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
         trackLayer.frame = bounds.insetBy(dx: 0.0, dy: bounds.height / 3)
         trackLayer.setNeedsDisplay()
         let currentThumbCenter = CGFloat(positionForValue(currentValue))
@@ -96,7 +96,7 @@ class Slider: UIControl {
                                   width: thumbWidth,
                                   height: thumbWidth)
         thumbLayer.setNeedsDisplay()
-        
+        CATransaction.commit()
     }
     
     func positionForValue(_ value: Double) -> Double {
