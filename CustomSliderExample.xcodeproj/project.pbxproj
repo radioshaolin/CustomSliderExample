@@ -12,6 +12,8 @@
 		D5171842207D473D00493F46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5171840207D473D00493F46 /* Main.storyboard */; };
 		D5171844207D474000493F46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5171843207D474000493F46 /* Assets.xcassets */; };
 		D5171847207D474000493F46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5171845207D474000493F46 /* LaunchScreen.storyboard */; };
+		D517184F207D482E00493F46 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517184E207D482E00493F46 /* Slider.swift */; };
+		D5171851207D5A6700493F46 /* SliderThumbLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5171850207D5A6700493F46 /* SliderThumbLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		D5171843207D474000493F46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5171846207D474000493F46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5171848207D474000493F46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D517184E207D482E00493F46 /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
+		D5171850207D5A6700493F46 /* SliderThumbLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderThumbLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				D5171843207D474000493F46 /* Assets.xcassets */,
 				D5171845207D474000493F46 /* LaunchScreen.storyboard */,
 				D5171848207D474000493F46 /* Info.plist */,
+				D517184E207D482E00493F46 /* Slider.swift */,
+				D5171850207D5A6700493F46 /* SliderThumbLayer.swift */,
 			);
 			path = CustomSliderExample;
 			sourceTree = "<group>";
@@ -136,6 +142,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D517183F207D473D00493F46 /* ViewController.swift in Sources */,
+				D5171851207D5A6700493F46 /* SliderThumbLayer.swift in Sources */,
+				D517184F207D482E00493F46 /* Slider.swift in Sources */,
 				D517183D207D473D00493F46 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

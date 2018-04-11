@@ -10,14 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let slider = Slider(frame: .zero)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        slider.backgroundColor = .red
+        view.addSubview(slider)
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidLayoutSubviews() {
+        let margin: CGFloat = 20.0
+        let width = view.bounds.width - margin * 2
+        slider.frame = CGRect(x: margin, y: margin * 2, width: width, height: 31)
+        
     }
 
 
