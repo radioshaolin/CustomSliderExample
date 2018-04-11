@@ -21,9 +21,9 @@ class ViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
-        let margin: CGFloat = 20.0
+        let margin: CGFloat = 40.0
         let width = view.bounds.width - margin * 2
-        slider.frame = CGRect(x: margin, y: UIApplication.shared.statusBarFrame.height + CGFloat(100.0), width: width, height: 16)
+        slider.frame = CGRect(x: margin, y: UIApplication.shared.statusBarFrame.height + CGFloat(100.0), width: width, height: 40)
     }
 
     @objc func sliderXValueChanged() {

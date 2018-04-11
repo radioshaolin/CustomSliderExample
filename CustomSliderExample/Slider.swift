@@ -9,36 +9,48 @@
 import UIKit
 import QuartzCore
 
+@IBDesignable
 class Slider: UIControl {
 
     let trackLayer = SliderTrackLayer()
     let thumbLayer = SliderThumbLayer()
+    let imageLAyer = CALayer()
     
-    var minimumValue: Double = 0.0
-    var maximumValue: Double = 1.0
-    var currentValue: Double = 0.4 {
+    @IBInspectable
+    var minimumValue = C.minimumValue
+    @IBInspectable
+    var maximumValue = C.maximumValue
+    @IBInspectable
+    var currentValue = 0.4 {
         didSet { updateLayerFrames() }
     }
-    var previousLocation = CGPoint()
-    var locationY: CGFloat = 0.0
-    var trackTintColor = UIColor(white: 1, alpha: 0.6) {
+    @IBInspectable
+    var trackTintColor = C.trackTintColor {
         didSet { trackLayer.setNeedsDisplay() }
     }
-    var trackHighlightTintColor = UIColor(red: 0.13, green: 0.76, blue: 0.69, alpha: 1.0) {
+    @IBInspectable
+    var trackHighlightTintColor = C.trackHighlightTintColor {
         didSet { trackLayer.setNeedsDisplay() }
     }
-    var thumbTintColor = UIColor(red: 0.13, green: 0.76, blue: 0.69, alpha: 1.0) {
+    @IBInspectable
+    var thumbTintColor = C.thumbTintColor {
         didSet { thumbLayer.setNeedsDisplay() }
     }
-    var thumbWidth: CGFloat {
-        return CGFloat(bounds.height)
-    }
-    var curvaceousness : CGFloat = 1
+    @IBInspectable
+    var thumbWidth = C.thumbWidth
+    @IBInspectable
+    var trackLayerHeight = C.trackLayerHeight
+    
 
     override var frame: CGRect {
         didSet { updateLayerFrames() }
     }
-
+    
+    var previousLocation = CGPoint()
+    var locationY: CGFloat = 0.0
+    
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -85,10 +97,18 @@ class Slider: UIControl {
         thumbLayer.highlighted = false
     }
     
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let relativeFrame = self.bounds
+        let hitTestEdgeInsets = UIEdgeInsetsMake(-25, -25, -25, -25)
+        let hitFrame = UIEdgeInsetsInsetRect(relativeFrame, hitTestEdgeInsets)
+        return hitFrame.contains(point)
+    }
+    
     func updateLayerFrames() {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-        trackLayer.frame = bounds.insetBy(dx: 0.0, dy: bounds.height / 3)
+        trackLayer.frame = CGRect(x: 0, y: frame.height / 2 , width: bounds.width, height: trackLayerHeight)
+        //bounds.insetBy(dx: 0.0, dy: bounds.height / 3)
         trackLayer.setNeedsDisplay()
         let currentThumbCenter = CGFloat(positionForValue(currentValue))
         thumbLayer.frame = CGRect(x: currentThumbCenter - thumbWidth / 2.0,
@@ -107,6 +127,17 @@ class Slider: UIControl {
     func boundValue(value: Double, lowerValue: Double, upperValue: Double) -> Double {
         return min(max(value, lowerValue), upperValue)
     }
-    
-    
 }
+
+private extension Slider {
+    struct C {
+        static let minimumValue = 0.0
+        static let maximumValue = 1.0
+        static let thumbWidth = CGFloat(18.0)
+        static let trackLayerHeight = CGFloat(4.0)
+        static let trackTintColor = UIColor(white: 1, alpha: 0.6)
+        static let trackHighlightTintColor = UIColor(red: 0.13, green: 0.76, blue: 0.69, alpha: 1.0)
+        static let thumbTintColor = UIColor(red: 0.13, green: 0.76, blue: 0.69, alpha: 1.0)
+    }
+}
+

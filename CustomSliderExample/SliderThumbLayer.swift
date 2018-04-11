@@ -17,7 +17,7 @@ class SliderThumbLayer: CALayer {
 
     override func draw(in ctx: CGContext) {
         guard let slider = slider else { return }
-        let thumbFrame = bounds.insetBy(dx: 2.0, dy: 2.0)
+        let thumbFrame = bounds.insetBy(dx: -2.0, dy: -2.0)
         let cornerRadius = thumbFrame.height / 2
         let thumbPath = UIBezierPath(roundedRect: thumbFrame, cornerRadius: cornerRadius)
             
